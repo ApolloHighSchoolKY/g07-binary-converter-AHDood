@@ -30,6 +30,11 @@ public class BinaryConverter
     	return value;
     }
 
+    public String getBinary ()
+    {
+        return binaryValue;
+    }
+
     public void setValue(int newValue)
     {
     	value=newValue;
@@ -38,17 +43,39 @@ public class BinaryConverter
     public String toBinary()
     {
     	//Convert the integer value to binary
+       
 
-
-    	return "";
+        String result = "";
+        int tempVal = value;
+       
+       while (tempVal >0)
+       {
+        int tempBin = tempVal % 2;
+        result = tempBin + result;
+        tempVal = tempVal/2;
+       }
+       binaryValue= result;
+       return binaryValue;
     }
 
     public int toDecimal()
     {
+        
     	//Convert the binary value to decimal
 
-    	return 0;
+        //instantiate vars
+        int result = 0;
+        int power = 0;
+            
+        for (int i = binaryValue.length()-1; i>=0; i--)
+        {
+            char c = binaryValue.charAt(i);
+            int bin = c - '0';
+            result += bin * (int)Math.pow(2,power); 
+            power++; 
+        }
+        value= result;
+        return value;
     }
-
-
 }
+    
